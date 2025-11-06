@@ -1,5 +1,5 @@
 {
   "name": "root",
   "private": true,
-  "packageManager": "pnpm@10.12.1"
+  "packageManager": "pnpm@10.20.0"
 }
