@@ -51,13 +51,13 @@ jobs:
           echo 'TOLGEE_API_KEY=${{ secrets.TOLGEE_API_KEY }}' >> ./integration-tests/.env.test
           echo 'TOLGEE_PROJECT_ID=${{ secrets.TOLGEE_PROJECT_ID }}' >> ./integration-tests/.env.test
 
-      - name: Run tests
-        run: pnpm run --filter integration-tests test:integration:http
-
       - name: Build
         run: |
           cd package
           pnpm run --filter medusa-plugin-tolgee build
+
+      - name: Run tests
+        run: pnpm run --filter integration-tests test:integration:http
 
       - name: Configure Git
         run: |
@@ -80,7 +80,7 @@ jobs:
           git push && git push --tags
 
       - name: Publish to NPM
-        run: pnpm  --filter medusa-plugin-tolgee publish
+        run: pnpm  --filter medusa-plugin-tolgee publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
