@@ -8,7 +8,6 @@ import { Header } from "../components/header";
 import { Container } from "../components/container";
 import { ShippingOptionCard } from "../components/shipping-option-card";
 import { useTranslation } from "react-i18next"
-import PluginI18n from "../components/PluginI18n";
 
 const ProductOptionWidget = TranslationWidget("product_option");
 const ProductOptionValueWidget = TranslationWidget("product_option_value");
@@ -19,12 +18,10 @@ const ProductOptionsInProductWidget = ({ data }: DetailWidgetProps<AdminProduct>
 
     const isEmpty = !options?.length;
     return (
-        <PluginI18n>
-            <Container>
-                <Header title={t("productOptionsList.title")} subtitle={isEmpty ? t("productOptionsList.empty") : undefined} />
-                {!isEmpty && OptionsGrid(options, t("widget.title"))}
-            </Container>
-        </PluginI18n>
+        <Container>
+            <Header title={t("productOptionsList.title")} subtitle={isEmpty ? t("productOptionsList.empty") : undefined} />
+            {!isEmpty && OptionsGrid(options, t("widget.title"))}
+        </Container>
     )
 }
 

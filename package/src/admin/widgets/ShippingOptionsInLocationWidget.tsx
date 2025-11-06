@@ -10,7 +10,6 @@ import { Header } from "../components/header";
 import { Container } from "../components/container";
 import { ShippingOptionCard } from "../components/shipping-option-card";
 import { useTranslation } from "react-i18next"
-import PluginI18n from "../components/PluginI18n";
 
 const ShippingOptionWidget = TranslationWidget("shipping_option");
 
@@ -35,15 +34,13 @@ const SOWidget = ({ data }: DetailWidgetProps<AdminStockLocation>) => {
     const isEmpty = !shipping_options?.length;
 
     return (
-        <PluginI18n>
-            <Container>
-                <Header title={t("shippingOptionsList.title")} subtitle={isEmpty ? t("shippingOptionsList.empty") : undefined} />
-                {isLoading ?
-                    <div className="px-6 py-4">Loading...</div> :
-                    !isEmpty && ShippingOptionsGrid(shipping_options, t("widget.title"))
-                }
-            </Container>
-        </PluginI18n>
+        <Container>
+            <Header title={t("shippingOptionsList.title")} subtitle={isEmpty ? t("shippingOptionsList.empty") : undefined} />
+            {isLoading ?
+                <div className="px-6 py-4">{t("loading")}</div> :
+                !isEmpty && ShippingOptionsGrid(shipping_options, t("widget.title"))
+            }
+        </Container>
     )
 }
 
